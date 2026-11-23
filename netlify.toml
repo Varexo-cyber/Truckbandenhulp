@@ -1,9 +1,10 @@
 # Truckbandenhulp — instellingen voor Netlify
-# De site is kant-en-klare HTML: er is geen bouwstap nodig.
+# Bij elke push zet Netlify met versie.py een nieuw versienummer achter de
+# stylesheet en scripts, zodat bezoekers direct de nieuwste versie zien.
 
 [build]
+  command = "python3 versie.py"
   publish = "."
-  command = ""
 
 # Oude adressen met index.html netjes doorsturen
 [[redirects]]

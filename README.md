@@ -20,18 +20,10 @@ trailers en zwaar transport van D&D Mobiliteit B.V.
 
 ## Publiceren
 
-De site staat op Netlify en is gekoppeld aan deze repository. Elke push naar
-`main` wordt automatisch gepubliceerd. Er is geen bouwstap: Netlify publiceert
-de map zoals hij is (zie `netlify.toml`).
-
-Na een wijziging in `assets/css` of `assets/js`:
-
-```bash
-python3 versie.py
-```
-
-Dat zet een nieuw versienummer achter de stylesheet en scripts, zodat
-bezoekers meteen de nieuwe versie zien.
+De site staat op Netlify en is gekoppeld aan deze repository. Bij elke push naar
+`main` draait Netlify `python3 versie.py` en publiceert daarna de site (zie
+`netlify.toml`). Dat script zet een nieuw versienummer achter de stylesheet en
+scripts, zodat bezoekers meteen de nieuwe versie zien.
 
 ## Google
 
