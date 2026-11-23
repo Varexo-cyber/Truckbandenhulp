@@ -1,0 +1,53 @@
+/* Eigen iconenset: één lijnstijl, 24×24, stroke 1.8. Geen icon-font, geen emoji. */
+(function () {
+  var P = {
+    phone: '<path d="M5 3.5h3.2l1.6 4.2-2.1 1.5a11 11 0 0 0 7.1 7.1l1.5-2.1 4.2 1.6V19a1.8 1.8 0 0 1-1.9 1.8A16.2 16.2 0 0 1 3.2 5.4 1.8 1.8 0 0 1 5 3.5z"/>',
+    wa: '<path d="M4 20.5l1.2-4.1A8.4 8.4 0 1 1 8.4 19.5z"/><path d="M9.2 8.6c.2-.6.5-.7.9-.7h.5l.9 2-.7.9c.6 1.2 1.5 2.1 2.7 2.7l.9-.7 2 .9v.5c0 .4-.2.8-.7 1-1.8.7-6.9-3.6-6.5-6.6z"/>',
+    pin: '<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.4"/>',
+    gps: '<circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/>',
+    arrow: '<path d="M4 12h15M13 6l6 6-6 6"/>',
+    check: '<path d="M4.5 12.5l4.5 4.5 10.5-11"/>',
+    x: '<path d="M6 6l12 12M18 6 6 18"/>',
+    alert: '<path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17v.2"/>',
+    stop: '<path d="M8.2 3h7.6L21 8.2v7.6L15.8 21H8.2L3 15.8V8.2z"/><path d="M8 12h8"/>',
+    snow: '<path d="M12 2.5v19M3.8 7.2l16.4 9.6M3.8 16.8l16.4-9.6"/><path d="M9.5 3.8 12 6.2l2.5-2.4M9.5 20.2 12 17.8l2.5 2.4"/>',
+    ice: '<path d="M3 17.5h18"/><path d="M5 17.5c1-3 2.5-4.5 4-4.5s2 1.5 3 1.5 2-3.5 4-3.5 3 3 3 6.5"/><path d="M7 21l2-3.5M13 21l1.5-3.5"/>',
+    mud: '<path d="M2.5 15c2 0 2-1.6 4-1.6s2 1.6 4 1.6 2-1.6 4-1.6 2 1.6 4 1.6 2-1.6 3-1.6"/><path d="M2.5 19.5c2 0 2-1.6 4-1.6s2 1.6 4 1.6 2-1.6 4-1.6 2 1.6 4 1.6 2-1.6 3-1.6"/><circle cx="12" cy="7.5" r="4"/><circle cx="12" cy="7.5" r="1.2"/>',
+    ditch: '<path d="M2.5 8h5l3.5 9h2l3.5-9h5"/><path d="M10 13.5h4"/>',
+    sand: '<path d="M2.5 18c3-4 6.5-6 9.5-6s6.5 2 9.5 6"/><path d="M6 15.5h.01M10 13.5h.01M15 14h.01M18 16h.01"/><circle cx="17" cy="6" r="2.5"/>',
+    field: '<path d="M2.5 19.5h19"/><path d="M5 19.5v-5M5 14.5c-1.4 0-2-1.4-2-3 1.4 0 2 1.4 2 3zM5 14.5c1.4 0 2-1.4 2-3-1.4 0-2 1.4-2 3z"/><path d="M12 19.5v-8M12 11.5c-1.6 0-2.4-1.6-2.4-3.4 1.6 0 2.4 1.6 2.4 3.4zM12 11.5c1.6 0 2.4-1.6 2.4-3.4-1.6 0-2.4 1.6-2.4 3.4z"/><path d="M19 19.5v-4.5"/>',
+    cone: '<path d="M9.5 4h5l4 15.5h-13z"/><path d="M3.5 19.5h17M7.6 13h8.8M8.6 8.5h6.8"/>',
+    berm: '<path d="M2.5 9h9l9.5 9"/><path d="M14.5 13.5c1.5-.5 2.5-1.6 3-3M17.5 16.5c1.5-.5 2.5-1.6 3-3"/>',
+    car: '<path d="M3 16.5v-3.2l2-5A2 2 0 0 1 6.9 7h10.2a2 2 0 0 1 1.9 1.3l2 5v3.2z"/><path d="M3 13.3h18"/><circle cx="7" cy="16.5" r="2"/><circle cx="17" cy="16.5" r="2"/>',
+    van: '<path d="M2.5 17V6.5h11.5l4 4h3.5V17"/><path d="M14 6.5v4h7.5"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>',
+    suv: '<path d="M2.5 16.5v-5l2-4.5h11l3.5 4 2.5 1v4.5"/><path d="M2.5 11.5h19"/><circle cx="7" cy="16.5" r="2.2"/><circle cx="17" cy="16.5" r="2.2"/>',
+    camper: '<path d="M2.5 17V5.5h14v4h3l2 3V17"/><path d="M6 9h4"/><circle cx="6.5" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>',
+    hook: '<path d="M12 2.5v6"/><path d="M12 8.5a4.5 4.5 0 1 1-4.5 4.5"/><path d="M7.5 13l-2 2.2"/>',
+    winch: '<rect x="3" y="8" width="11" height="8" rx="1.5"/><path d="M6 8v8M9 8v8"/><path d="M14 12h7.5"/><path d="M20 10v4"/>',
+    camera: '<path d="M3 8.5h4l1.6-2.5h6.8L17 8.5h4V19H3z"/><circle cx="12" cy="13.2" r="3.4"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+    shield: '<path d="M12 2.8 4.5 5.6v6c0 4.6 3.2 8.2 7.5 9.6 4.3-1.4 7.5-5 7.5-9.6v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+    hazard: '<path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 9.5l-4 6.5h8z"/>',
+    vest: '<path d="M8 3h8l3.5 3.5V21H4.5V6.5z"/><path d="M8 3l4 7 4-7M12 10v11M4.5 14h15"/>',
+    shovel: '<path d="M14 10 20.5 3.5M18 2l4 4"/><path d="M14 10l-2-2-6.5 6.5a3.5 3.5 0 0 0 5 5L17 13z"/>',
+    tyre: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M12 16v5M3 12h5M16 12h5"/>',
+    menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
+    chevron: '<path d="M6 9l6 6 6-6"/>',
+    euro: '<path d="M17.5 6.5A7 7 0 1 0 17.5 17.5"/><path d="M4 10h9M4 14h9"/>',
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6l8.5 7 8.5-7"/>',
+    route: '<circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H16a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h7.5"/>',
+    eye: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+    truck: '<path d="M2.5 16.5V6.5h11v10"/><path d="M13.5 9.5h4.5l3.5 4v3h-8"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/>',
+    trailer: '<path d="M2.5 5.5h15v10h-15z"/><path d="M17.5 13h4"/><circle cx="6" cy="17.5" r="2"/><circle cx="11" cy="17.5" r="2"/>',
+    wrench: '<path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3l7.5-7.5a4 4 0 0 1-2-2z"/>',
+    gauge: '<path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/><circle cx="12" cy="17" r="1.2"/>',
+    patch: '<rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 12h6M12 9v6"/>',
+    road: '<path d="M8 3 5 21M16 3l3 18"/><path d="M12 5v2.5M12 10.5v3M12 16.5V19"/>',
+    plate: '<rect x="2.5" y="7" width="19" height="10" rx="2"/><path d="M6 7v10"/>',
+    building: '<path d="M4 20.5V8l8-4.5L20 8v12.5"/><path d="M9 20.5v-6h6v6"/>',
+    upload: '<path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v4h16v-4"/>'
+  };
+  window.icon = function (n, cls) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"' + (cls ? ' class="' + cls + '"' : '') + '>' + (P[n] || '') + '</svg>';
+  };
+})();
