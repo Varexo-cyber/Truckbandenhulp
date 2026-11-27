@@ -543,3 +543,39 @@ textarea.inp { min-height: 100px; resize: vertical; }
 @media (max-width: 1000px) and (min-width: 641px) { .logo__code { display: none; } }
 /* WhatsApp staat al als vaste knop rechtsonder, dus niet nog eens in de header */
 .hdr__knop .btn--wa { display: none; }
+
+/* ---------- Soepel inladen ----------
+   html.anim wordt in de <head> gezet, alleen als de bezoeker geen "minder beweging" heeft ingesteld.
+   Blokken verderop verbergt alleen het script (class .sv); laadt dat niet, dan blijft alles gewoon zichtbaar. */
+@keyframes in-omhoog { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes in-omlaag { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+@keyframes in-fade { from { opacity: 0; } to { opacity: 1; } }
+html.anim .hdr { animation: in-omlaag .6s cubic-bezier(.2, .7, .2, 1) both; }
+html.anim :is(.hero, .pkop) :is(h1, .lead, .hero__knoppen, .melder, .maat, .hero__punten, .kruimel, .boven, .hero__status) { animation: in-omhoog .8s cubic-bezier(.2, .7, .2, 1) both; }
+html.anim :is(.hero, .pkop) .kruimel, html.anim :is(.hero, .pkop) .boven { animation-delay: .1s; }
+html.anim :is(.hero, .pkop) h1 { animation-delay: .18s; }
+html.anim :is(.hero, .pkop) .lead { animation-delay: .32s; }
+html.anim :is(.hero, .pkop) .hero__knoppen { animation-delay: .44s; }
+html.anim :is(.hero, .pkop) :is(.melder, .maat) { animation-delay: .56s; }
+html.anim :is(.hero, .pkop) .hero__punten { animation-delay: .68s; }
+html.anim :is(.hero__media, .hero__beeld, .pkop__foto, .pkop__beeld) { animation: in-fade 1.2s ease both; }
+
+/* blokken verderop: verschijnen zodra ze in beeld komen */
+html.anim .sv { opacity: 0; transform: translateY(26px); }
+html.anim .sv { transition: opacity .75s cubic-bezier(.2, .7, .2, 1), transform .75s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--sv-vertraging, 0s); }
+html.anim .sv.in { opacity: 1; transform: none; }
+
+/* foto's faden in zodra ze geladen zijn */
+html.anim img.laadt { opacity: 0; }
+html.anim img.geladen { transition: opacity .6s ease; }
+
+/* WhatsApp-knop: schuift in beeld en heeft een rustige gloed */
+@keyframes wa-in { from { opacity: 0; transform: translateY(18px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes wa-gloed { 0%, 100% { box-shadow: 0 10px 28px -10px rgba(0, 0, 0, .45), 0 0 0 0 rgba(37, 211, 102, .38); } 50% { box-shadow: 0 10px 28px -10px rgba(0, 0, 0, .45), 0 0 0 10px rgba(37, 211, 102, 0), 0 0 22px 2px rgba(37, 211, 102, .28); } }
+html.anim .wa-knop { animation: wa-in .7s cubic-bezier(.2, .7, .2, 1) .9s both, wa-gloed 3.2s ease-in-out 2s infinite; }
+.wa-knop:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.anim *, html.anim *::before, html.anim *::after { animation: none !important; transition: none !important; }
+  html.anim .sv, html.anim img.laadt { opacity: 1 !important; transform: none !important; }
+}

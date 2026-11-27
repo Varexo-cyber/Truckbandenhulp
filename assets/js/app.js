@@ -256,3 +256,51 @@
     if (document.readyState === 'complete') start(); else window.addEventListener('load', start);
   }
 })();
+
+/* ---------- Soepel inladen: blokken en foto's ---------- */
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  if (!root.classList.contains('anim') || !('IntersectionObserver' in window)) return;
+
+  /* rijen met kaarten: de kaarten zelf verschijnen kort na elkaar */
+  var RIJEN = '.diensten, .situaties, .stappen, .aanpak, .provkaarten, .faq, .plekken, .feiten__wrap, .kaarten, .regels, .veilig__lijst, .gemlijst, .buren, .kernen';
+  var kandidaten = [];
+  document.querySelectorAll('main > section:not(.hero):not(.pkop) .wrap > *, main > section.wrap > *, .feiten__wrap > *, .ftr__grid > *').forEach(function (el) {
+    if (el.matches(RIJEN)) {
+      Array.prototype.forEach.call(el.children, function (k, i) { kandidaten.push([k, Math.min(i, 8) * 0.07]); });
+    } else {
+      var rij = el.querySelector(RIJEN);
+      kandidaten.push([el, 0]);
+      if (rij && rij.children.length > 1 && rij.children.length <= 24) {
+        Array.prototype.forEach.call(rij.children, function (k, i) { kandidaten.push([k, 0.1 + Math.min(i, 8) * 0.07]); });
+      }
+    }
+  });
+
+  var io = new IntersectionObserver(function (items) {
+    items.forEach(function (it) {
+      if (it.isIntersecting) { it.target.classList.add('in'); io.unobserve(it.target); }
+    });
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+
+  var hoogte = window.innerHeight;
+  kandidaten.forEach(function (paar) {
+    var el = paar[0];
+    if (el.classList.contains('sv')) return;
+    /* wat al in beeld staat bij het openen, laten we met rust: geen flits */
+    if (el.getBoundingClientRect().top < hoogte * 0.92) return;
+    el.classList.add('sv');
+    if (paar[1]) el.style.setProperty('--sv-vertraging', paar[1] + 's');
+    io.observe(el);
+  });
+
+  /* foto's die nog laden, faden in zodra ze er zijn */
+  document.querySelectorAll('main img').forEach(function (img) {
+    if (img.complete && img.naturalWidth) return;
+    img.classList.add('laadt');
+    var klaar = function () { img.classList.add('geladen'); img.classList.remove('laadt'); };
+    img.addEventListener('load', klaar, { once: true });
+    img.addEventListener('error', klaar, { once: true });
+  });
+})();
