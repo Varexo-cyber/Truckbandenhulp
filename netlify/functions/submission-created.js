@@ -120,7 +120,21 @@ exports.handler = async (event) => {
   const geldig = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(klant);
   const onderwerp = data.onderwerp ? ` · ${data.onderwerp}` : '';
 
-  await post.sendMail({
+  /* lukt versturen vanaf het merkadres niet (Zoho weigert de afzender), dan
+     gaat de mail via het inlogadres met het merkadres als antwoordadres, en
+     komt de foutmelding van Zoho in de inbox terecht */
+  const fouten = [];
+  async function verstuur(mail) {
+    try { await post.sendMail(mail); }
+    catch (e) {
+      console.error('Versturen vanaf ' + MERK.adres + ' mislukt:', e && e.message);
+      fouten.push(String(e && (e.response || e.message) || e));
+      if (gebruiker.toLowerCase() === MERK.adres.toLowerCase()) throw e;
+      await post.sendMail({ ...mail, from: mail.from.replace('<' + MERK.adres + '>', '<' + gebruiker + '>'), replyTo: mail.replyTo || MERK.adres });
+    }
+  }
+
+  await verstuur({
     from: `"${MERK.naam} website" <${MERK.adres}>`,
     to: MERK.adres,
     replyTo: geldig ? `"${String(data.naam || '').replace(/"/g, '')}" <${klant}>` : undefined,
@@ -130,7 +144,7 @@ exports.handler = async (event) => {
   });
 
   if (geldig) {
-    await post.sendMail({
+    await verstuur({
       from: `"${MERK.naam}" <${MERK.adres}>`,
       to: klant,
       replyTo: MERK.adres,
@@ -138,6 +152,13 @@ exports.handler = async (event) => {
       text: `${data.naam ? 'Beste ' + data.naam + ',' : 'Beste klant,'}\n\nBedankt voor uw bericht. Het is goed bij ons binnengekomen en we nemen zo snel mogelijk contact met u op.\n\n${MERK.pechZin} Bel ons dan op ${MERK.telefoon} of stuur een WhatsApp (${MERK.whatsapp}), dan helpen we u sneller.\n\nMet vriendelijke groet,\n${MERK.naam}\n\n---\nUw bericht:\n${data.bericht || ''}\n\n${MERK.telefoon} · ${MERK.adres} · ${MERK.domein}`,
       html: bevestiging(data),
     });
+  }
+  if (fouten.length) {
+    await post.sendMail({
+      from: gebruiker, to: gebruiker,
+      subject: `Let op: ${MERK.naam} kon niet versturen vanaf ${MERK.adres}`,
+      text: `De mails zijn wel verstuurd, maar via ${gebruiker}. Zoho gaf deze melding:\n\n${fouten.join('\n\n')}`,
+    }).catch(() => {});
   }
   return { statusCode: 200, body: 'Verstuurd' };
 };
