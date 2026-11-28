@@ -1,0 +1,8 @@
+{
+  "name": "website",
+  "private": true,
+  "description": "Alleen nodig voor de functie die e-mails verstuurt na het contactformulier.",
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  }
+}
