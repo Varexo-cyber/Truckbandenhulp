@@ -579,3 +579,8 @@ html.anim .wa-knop { animation: wa-in .7s cubic-bezier(.2, .7, .2, 1) .9s both, 
   html.anim *, html.anim *::before, html.anim *::after { animation: none !important; transition: none !important; }
   html.anim .sv, html.anim img.laadt { opacity: 1 !important; transform: none !important; }
 }
+
+/* contactformulier */
+.velden2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+.contactform textarea.inp { min-height: 130px; resize: vertical; }
+@media (max-width: 640px) { .velden2 { grid-template-columns: 1fr; } }
